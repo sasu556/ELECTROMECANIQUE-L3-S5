@@ -1,1218 +1,300 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الدروس والملفات - كهروميكانيك | USTO-MB</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Font Cairo -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#0284c7',
-                            600: '#0369a1',
-                            700: '#075985',
-                            800: '#0c4a6e',
-                            900: '#0f172a'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { font-family: 'Cairo', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); }
-        .dark .glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
-        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة الدروس والملفات - كهروميكانيك | USTO-MB</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Cairo','sans-serif']}}}}</script>
+<style>
+body{font-family:'Cairo',sans-serif}
+.glass{background:rgba(255,255,255,.85);backdrop-filter:blur(12px)}
+.dark .glass{background:rgba(15,23,42,.85)}
+.custom-scrollbar::-webkit-scrollbar{height:6px;width:6px}
+.custom-scrollbar::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:9999px}
+</style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-200">
 
-    <!-- Header Navigation -->
-    <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 glass shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-            <!-- Brand / Logo (Accessible only by clicking 15 times) -->
-            <div class="flex items-center gap-3 cursor-pointer select-none" id="brand-logo">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow-md shadow-sky-500/20">
-                    <i class="fa-solid fa-bolt-lightning"></i>
-                </div>
-                <div>
-                    <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-                        منصة الكهروميكانيك <span class="text-sky-600 dark:text-sky-400 text-xs sm:text-sm font-semibold">L3 S1</span>
-                    </h1>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">جامعة العلوم والتكنولوجيا وهران USTO-MB</p>
-                </div>
-            </div>
+<header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 glass shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3 select-none">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center text-xl shadow-md"><i class="fa-solid fa-bolt-lightning"></i></div>
+      <div>
+        <h1 class="text-base sm:text-lg font-extrabold leading-tight">منصة الكهروميكانيك <span class="text-sky-600 dark:text-sky-400 text-xs sm:text-sm font-semibold">L3 S1</span></h1>
+        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">جامعة العلوم والتكنولوجيا وهران USTO-MB</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="theme-toggle" type="button" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" title="تبديل الوضع">
+        <i class="fa-solid fa-moon dark:hidden"></i><i class="fa-solid fa-sun hidden dark:inline"></i>
+      </button>
+      <button id="nav-home-btn" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-sky-50 dark:bg-sky-950/50 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-800 flex items-center gap-1.5">
+        <i class="fa-solid fa-house"></i><span>الرئيسية</span>
+      </button>
+    </div>
+  </div>
+</header>
 
-            <!-- Quick Navigation Controls -->
-            <div class="flex items-center gap-2">
-                <!-- Search Trigger Input -->
-                <div class="relative hidden md:block w-64">
-                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                    <input type="text" id="global-search" placeholder="بحث في المواد والملفات..." 
-                        class="w-full pl-3 pr-9 py-1.5 text-xs rounded-lg border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all">
-                </div>
+<main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" type="button" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="تبديل الوضع">
-                    <i class="fa-solid fa-moon dark:hidden"></i>
-                    <i class="fa-solid fa-sun hidden dark:inline"></i>
-                </button>
-
-                <!-- Home Button -->
-                <button id="nav-home-btn" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-sky-50 dark:bg-sky-950/50 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-800 hover:bg-sky-100 dark:hover:bg-sky-900/50 transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-house"></i>
-                    <span>الرئيسية</span>
-                </button>
-            </div>
+  <section id="view-modules" class="space-y-6">
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-sky-900 via-indigo-900 to-slate-900 text-white p-6 sm:p-8 shadow-xl">
+      <div class="relative z-10 max-w-2xl space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-semibold"><i class="fa-solid fa-graduation-cap"></i> قسم التحكم الآلي - كهروميكانيك 2026/2027</div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight">جميع دروس وأعمال (Cours, TD, TP) السداسي الأول</h2>
+        <p class="text-sm text-slate-300 leading-relaxed">اختر المادة للوصول إلى الدروس (Cours)، السلاسل (TD)، والتجارب التطبيقية (TP) الجاهزة للتحميل المباشر.</p>
+        <div class="relative max-w-md pt-2">
+          <i class="fa-solid fa-search absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 mt-1"></i>
+          <input type="text" id="hero-search" placeholder="ابحث باسم المادة أو اسم الأستاذ..." class="w-full pl-4 pr-10 py-2.5 text-sm rounded-xl border-0 bg-white/10 text-white placeholder-slate-400 focus:ring-2 focus:ring-sky-400 focus:outline-none">
         </div>
-    </header>
-
-    <!-- Main Container -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-
-        <!-- Notification Toast Banner -->
-        <div id="toast-container" class="fixed bottom-5 left-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
-
-        <!-- ================= VIEW 1: HOME / MODULES GRID ================= -->
-        <section id="view-modules" class="space-y-6">
-            <!-- Hero Banner -->
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-sky-900 via-indigo-900 to-slate-900 text-white p-6 sm:p-8 shadow-xl">
-                <div class="relative z-10 max-w-2xl space-y-3">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-semibold">
-                        <i class="fa-solid fa-graduation-cap"></i> قسم التحكم الآلي - كهروميكانيك 2026/2027
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight">
-                        جميع دروس وأعمال (Cours, TD, TP) السداسي الأول
-                    </h2>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        قم باختيار المادة المطلوبة للوصول إلى كافة الدروس (Cours)، السلاسل والتمارين (TD)، والتقارير والتجارب التطبيقية (TP) الجاهزة للتحميل المباشر.
-                    </p>
-                    
-                    <!-- Search Bar Mobile/Desktop -->
-                    <div class="pt-2">
-                        <div class="relative max-w-md">
-                            <i class="fa-solid fa-search absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                            <input type="text" id="hero-search" placeholder="ابحث باسم المادة أو الدرس أو اسم الأستاذ..." 
-                                class="w-full pl-4 pr-10 py-2.5 text-sm rounded-xl border-0 bg-white/10 dark:bg-slate-800/80 text-white placeholder-slate-400 backdrop-blur-md focus:ring-2 focus:ring-sky-400 focus:outline-none">
-                        </div>
-                    </div>
-                </div>
-                <!-- Background Graphic -->
-                <div class="absolute -left-10 -bottom-10 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute right-1/3 -top-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            </div>
-
-            <!-- Modules Filter Tabs -->
-            <div class="flex items-center justify-between gap-4 flex-wrap border-b border-slate-200 dark:border-slate-800 pb-3">
-                <div class="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1">
-                    <button id="filter-all" type="button" class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-sky-600 text-white shadow-sm">
-                        الكل (10 مواد)
-                    </button>
-                    <button id="filter-cours" type="button" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">
-                        📘 يحتوي على دروس (Cours)
-                    </button>
-                    <button id="filter-td" type="button" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">
-                        📝 يحتوي على TD
-                    </button>
-                    <button id="filter-tp" type="button" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">
-                        🔬 يحتوي على TP
-                    </button>
-                </div>
-                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium" id="modules-count-label">
-                    عرض 10 مواد دراسية
-                </div>
-            </div>
-
-            <!-- Modules Grid -->
-            <div id="modules-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Module Cards rendered via JS -->
-            </div>
-        </section>
-
-        <!-- ================= VIEW 2: MODULE DETAIL VIEW ================= -->
-        <section id="view-module-detail" class="hidden space-y-6">
-            <!-- Breadcrumbs & Back -->
-            <div class="flex items-center justify-between gap-4">
-                <button id="back-to-modules-btn" type="button" class="inline-flex items-center gap-2 text-xs font-bold text-sky-600 dark:text-sky-400 hover:underline">
-                    <i class="fa-solid fa-arrow-right"></i>
-                    <span>الرجوع إلى قائمة المواد</span>
-                </button>
-                <div class="text-xs text-slate-500 dark:text-slate-400" id="detail-breadcrumb">
-                    الرئيسية / المادة
-                </div>
-            </div>
-
-            <!-- Selected Module Card Header -->
-            <div id="module-detail-header" class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden">
-                <!-- Content injected via JS -->
-            </div>
-
-            <!-- Content Type Tabs (Cours, TD, TP) -->
-            <div class="border-b border-slate-200 dark:border-slate-700">
-                <nav class="flex gap-4 sm:gap-8 overflow-x-auto" aria-label="Tabs">
-                    <button id="tab-cours" type="button" class="tab-type-btn py-3 px-1 border-b-2 font-bold text-sm flex items-center gap-2 border-sky-600 text-sky-600 dark:text-sky-400">
-                        <i class="fa-solid fa-book-open"></i>
-                        <span>الدروس (Cours)</span>
-                        <span id="badge-count-cours" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300">0</span>
-                    </button>
-                    <button id="tab-td" type="button" class="tab-type-btn py-3 px-1 border-b-2 font-bold text-sm flex items-center gap-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
-                        <i class="fa-solid fa-pen-ruler"></i>
-                        <span>الأعمال الموجهة (TD)</span>
-                        <span id="badge-count-td" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">0</span>
-                    </button>
-                    <button id="tab-tp" type="button" class="tab-type-btn py-3 px-1 border-b-2 font-bold text-sm flex items-center gap-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
-                        <i class="fa-solid fa-flask"></i>
-                        <span>الأعمال التطبيقية (TP)</span>
-                        <span id="badge-count-tp" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">0</span>
-                    </button>
-                </nav>
-            </div>
-
-            <!-- Document Search in Module -->
-            <div class="flex items-center justify-between gap-4">
-                <h3 id="category-title-heading" class="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-                    <span>قائمة ملفات الدروس</span>
-                </h3>
-                <div class="relative w-64">
-                    <i class="fa-solid fa-search absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                    <input type="text" id="doc-search-input" placeholder="تصفية الملفات..." 
-                        class="w-full pl-3 pr-8 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500">
-                </div>
-            </div>
-
-            <!-- Documents List Grid -->
-            <div id="documents-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Document Cards rendered via JS -->
-            </div>
-        </section>
-
-        <!-- ================= VIEW 3: SECRET HIDDEN ADMIN PANEL ================= -->
-        <section id="view-admin" class="hidden space-y-6">
-            <!-- Security Check / Verification Header -->
-            <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white rounded-2xl p-6 shadow-xl border border-slate-800 relative">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold">
-                            <i class="fa-solid fa-shield-halved"></i> صفحة مخفية أوتوماتيكية للإدارة
-                        </div>
-                        <h2 class="text-xl sm:text-2xl font-extrabold">لوحة رفع وإدارة الملفات والمواد</h2>
-                        <p class="text-xs text-slate-300">
-                            أضف رابط Drive أو PDF وأختر المادة والنوع (Cours/TD/TP)، وستظهر تلقائياً في الصفحة الرئيسية للطلاب بدون تعديل الكود.
-                        </p>
-                    </div>
-                    <button id="exit-admin-btn" type="button" class="px-4 py-2 text-xs font-bold rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center gap-2 border border-white/10">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span>الخروج للواجهة الطلابية</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Add New File Form Box -->
-            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-5">
-                <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-700 pb-3">
-                    <div class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-900/60 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-plus"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 dark:text-white">إضافة ملف جديد تلقائياً</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">ملء البيانات أدناه سيقوم بنشر الملف في قسم المادة فوراً</p>
-                    </div>
-                </div>
-
-                <form id="add-file-form" class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Select Module -->
-                        <div>
-                            <label for="form-module-select" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                                اختر المادة (Module) <span class="text-rose-500">*</span>
-                            </label>
-                            <select id="form-module-select" required
-                                class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-sky-500 focus:outline-none">
-                                <option value="" disabled selected>-- اختر المادة --</option>
-                                <!-- Injected via JS -->
-                            </select>
-                        </div>
-
-                        <!-- Select Category Type -->
-                        <div>
-                            <label for="form-category-select" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                                اختر النوع <span class="text-rose-500">*</span>
-                            </label>
-                            <select id="form-category-select" required
-                                class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-sky-500 focus:outline-none">
-                                <option value="cours">📘 درس (Cours)</option>
-                                <option value="td">📝 أعمال موجهة (TD)</option>
-                                <option value="tp">🔬 أعمال تطبيقية (TP)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Title of File -->
-                        <div>
-                            <label for="form-title-input" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                                عنوان الملف / الدرس <span class="text-rose-500">*</span>
-                            </label>
-                            <input type="text" id="form-title-input" required placeholder="مثال: Chapitre 1 - Production d'énergie" 
-                                class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-sky-500 focus:outline-none">
-                        </div>
-
-                        <!-- Author / Note -->
-                        <div>
-                            <label for="form-author-input" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                                ملاحظة أو اسم الأستاذ (اختياري)
-                            </label>
-                            <input type="text" id="form-author-input" placeholder="مثال: أستاذ المادة - 2026/2027" 
-                                class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-sky-500 focus:outline-none">
-                        </div>
-                    </div>
-
-                    <!-- PDF / Drive Link Input -->
-                    <div>
-                        <label for="form-drive-url-input" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                            رابط Google Drive PDF أو رابط التحميل المباشر <span class="text-rose-500">*</span>
-                        </label>
-                        <div class="relative">
-                            <i class="fa-brands fa-google-drive absolute right-3 top-1/2 -translate-y-1/2 text-emerald-500"></i>
-                            <input type="url" id="form-drive-url-input" required placeholder="https://drive.google.com/file/d/1ABC123xyz.../view?usp=sharing" 
-                                class="w-full pr-10 pl-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-sky-500 focus:outline-none">
-                        </div>
-                        <p class="text-[11px] text-slate-400 mt-1">
-                            💡 نصيحة: يمكنك وضع رابط Google Drive عادي وسيتم تحويله أوتوماتيكياً لرابط تحميل مباشر ومعاينة.
-                        </p>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="flex items-center justify-end gap-3 pt-2">
-                        <button type="reset" class="px-4 py-2 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
-                            مسح الحقول
-                        </button>
-                        <button type="submit" class="px-5 py-2 text-xs font-bold rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/20 transition-all flex items-center gap-2">
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
-                            <span>إضافة الملف تلقائياً إلى الموقع</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Manage Added Files List Table -->
-            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-700 pb-3">
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 dark:text-white">إدارة الملفات المضافة</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">يمكنك حذف أو تعديل أي ملف تمت إضافته</p>
-                    </div>
-                    
-                    <div class="flex items-center gap-2">
-                        <button id="export-db-btn" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 transition-colors flex items-center gap-1.5">
-                            <i class="fa-solid fa-download"></i>
-                            <span>تصدير نسخة احتياطية (JSON)</span>
-                        </button>
-                        <button id="reset-db-btn" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900 hover:bg-rose-100 transition-colors flex items-center gap-1.5">
-                            <i class="fa-solid fa-rotate-left"></i>
-                            <span>استعادة العينة الافتراضية</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Table Container -->
-                <div class="overflow-x-auto custom-scrollbar">
-                    <table class="w-full text-right text-xs">
-                        <thead>
-                            <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-bold bg-slate-50 dark:bg-slate-900/50">
-                                <th class="py-3 px-3">المادة</th>
-                                <th class="py-3 px-3">النوع</th>
-                                <th class="py-3 px-3">عنوان الملف</th>
-                                <th class="py-3 px-3">الرابط</th>
-                                <th class="py-3 px-3">تاريخ الإضافة</th>
-                                <th class="py-3 px-3 text-center">إجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-files-tbody" class="divide-y divide-slate-200 dark:divide-slate-700">
-                            <!-- Injected via JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Modal for Password Verification -->
-    <div id="password-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4">
-            <div class="text-center space-y-2">
-                <div class="w-12 h-12 rounded-2xl bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center mx-auto text-xl">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">الدخول للصفحة المخفية</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">أدخل رمز المرور السري للوصول للوحة التحكم (الرمز الافتراضي: 1234)</p>
-            </div>
-
-            <form id="password-form" class="space-y-3">
-                <div>
-                    <input type="password" id="admin-pin-input" placeholder="أدخل رمز PIN السري" required
-                        class="w-full text-center tracking-widest text-lg font-bold px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-sky-500 focus:outline-none">
-                </div>
-                <div id="password-error" class="text-xs text-rose-500 text-center font-bold hidden">
-                    رمز PIN غير صحيح! حاول مرة أخرى.
-                </div>
-                <div class="flex gap-2">
-                    <button type="button" id="close-pass-modal-btn" class="w-1/2 py-2 text-xs font-semibold rounded-xl border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
-                        إلغاء
-                    </button>
-                    <button type="submit" class="w-1/2 py-2 text-xs font-bold rounded-xl bg-sky-600 hover:bg-sky-700 text-white shadow-md">
-                        دخول
-                    </button>
-                </div>
-            </form>
-        </div>
+      </div>
     </div>
 
-    <!-- Modal for Action Confirmation (In-Page replacement for confirm) -->
-    <div id="confirm-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4">
-            <div class="text-center space-y-2">
-                <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto text-xl">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
-                <h3 id="confirm-modal-title" class="text-lg font-extrabold text-slate-900 dark:text-white">تأكيد الإجراء</h3>
-                <p id="confirm-modal-msg" class="text-xs text-slate-500 dark:text-slate-400">هل أنت تأكد من الاستمرار؟</p>
-            </div>
-
-            <div class="flex gap-2">
-                <button type="button" id="confirm-cancel-btn" class="w-1/2 py-2 text-xs font-semibold rounded-xl border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
-                    إلغاء
-                </button>
-                <button type="button" id="confirm-ok-btn" class="w-1/2 py-2 text-xs font-bold rounded-xl bg-rose-600 hover:bg-rose-700 text-white shadow-md">
-                    تأكيد
-                </button>
-            </div>
-        </div>
+    <div class="flex items-center justify-between gap-4 flex-wrap border-b border-slate-200 dark:border-slate-800 pb-3">
+      <div class="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1" id="filters"></div>
+      <div class="text-xs text-slate-500 dark:text-slate-400 font-medium" id="modules-count-label"></div>
     </div>
+    <div id="modules-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4"></div>
+  </section>
 
-    <!-- Modal for PDF Preview / View File -->
-    <div id="pdf-modal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-md hidden flex items-center justify-center p-2 sm:p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full h-[90vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-            <!-- Modal Header -->
-            <div class="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between gap-4 bg-slate-50 dark:bg-slate-900">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-rose-100 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold text-sm">
-                        <i class="fa-solid fa-file-pdf"></i>
-                    </div>
-                    <div>
-                        <h4 id="pdf-modal-title" class="text-sm font-bold text-slate-900 dark:text-white truncate max-w-md">معاينة الملف</h4>
-                        <p id="pdf-modal-sub" class="text-[11px] text-slate-500">معاينة مباشرة عبر Google Drive</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-2">
-                    <a id="pdf-modal-download-btn" href="#" target="_blank" download
-                        class="px-3 py-1.5 text-xs font-bold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-sm">
-                        <i class="fa-solid fa-download"></i>
-                        <span>تحميل أوتوماتيكي</span>
-                    </a>
-                    <button id="close-pdf-modal-btn" type="button" class="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Modal Frame Container -->
-            <div class="flex-1 bg-slate-100 dark:bg-slate-950 relative">
-                <iframe id="pdf-frame" class="w-full h-full border-0" src="about:blank"></iframe>
-            </div>
-        </div>
+  <section id="view-module-detail" class="hidden space-y-6">
+    <div class="flex items-center justify-between gap-4">
+      <button id="back-btn" type="button" class="inline-flex items-center gap-2 text-xs font-bold text-sky-600 dark:text-sky-400 hover:underline"><i class="fa-solid fa-arrow-right"></i><span>الرجوع إلى قائمة المواد</span></button>
+      <div class="text-xs text-slate-500 dark:text-slate-400" id="detail-breadcrumb"></div>
     </div>
+    <div id="module-detail-header" class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm"></div>
+    <div class="border-b border-slate-200 dark:border-slate-700">
+      <nav class="flex gap-4 sm:gap-8 overflow-x-auto" id="tabs"></nav>
+    </div>
+    <div class="flex items-center justify-between gap-4">
+      <h3 id="category-title" class="text-base font-extrabold"></h3>
+      <div class="relative w-56 sm:w-64">
+        <i class="fa-solid fa-search absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+        <input type="text" id="doc-search" placeholder="تصفية الملفات..." class="w-full pl-3 pr-8 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500">
+      </div>
+    </div>
+    <div id="documents" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4"></div>
+  </section>
+</main>
 
-    <!-- Footer -->
-    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6 text-xs text-slate-500 dark:text-slate-400">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-                <p class="font-semibold text-slate-700 dark:text-slate-300">قسم التحكم الآلي - تخصص كهروميكانيك (3ème Année Licence)</p>
-                <p class="text-[11px] text-slate-400 mt-0.5">جامعة العلوم والتكنولوجيا وهران - محمد بوضياف (USTO-MB)</p>
-            </div>
+<div id="pdf-modal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4">
+  <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+    <div class="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between gap-4 bg-slate-50 dark:bg-slate-900">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-8 h-8 rounded-lg bg-rose-100 dark:bg-rose-950/50 text-rose-600 flex items-center justify-center"><i class="fa-solid fa-file-pdf"></i></div>
+        <h4 id="pdf-title" class="text-sm font-bold truncate"></h4>
+      </div>
+      <div class="flex items-center gap-2">
+        <a id="pdf-download" href="#" target="_blank" rel="noopener" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5"><i class="fa-solid fa-download"></i><span>تحميل</span></a>
+        <button id="pdf-close" type="button" class="p-2 rounded-lg text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+    </div>
+    <div class="flex-1 bg-slate-100 dark:bg-slate-950"><iframe id="pdf-frame" class="w-full h-full border-0" src="about:blank"></iframe></div>
+  </div>
+</div>
+
+<footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6 text-xs text-slate-500 dark:text-slate-400">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <p class="font-semibold text-slate-700 dark:text-slate-300">قسم التحكم الآلي - تخصص كهروميكانيك (3ème Année Licence)</p>
+    <p class="text-[11px] text-slate-400 mt-0.5">جامعة العلوم والتكنولوجيا وهران - محمد بوضياف (USTO-MB)</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   المواد الدراسية
+   ============================================================ */
+const MODULES = [
+  {id:'pee',code:'PEE',nameAr:'إنتاج الطاقة الكهربائية',nameFr:"Production d'énergie électrique",teacher:'M. AZZOUZ',icon:'fa-bolt',color:'from-amber-500 to-orange-600'},
+  {id:'se',code:'SE',nameAr:'الأمن الكهربائي',nameFr:'Sécurité électrique',teacher:'M. MEKSI',icon:'fa-shield-heart',color:'from-emerald-500 to-teal-600'},
+  {id:'tt',code:'TT',nameAr:'الانتقال الحراري',nameFr:'Transfert thermique',teacher:'M. SLIMANE',icon:'fa-temperature-high',color:'from-rose-500 to-red-600'},
+  {id:'mat',code:'MAT',nameAr:'المواد الكهرتقنية',nameFr:'Matériaux électrotechniques',teacher:'Mme. SI ALI',icon:'fa-atom',color:'from-purple-500 to-indigo-600'},
+  {id:'sa',code:'SA',nameAr:'الأنظمة الموجهة',nameFr:'Systèmes Asservis',teacher:'M. HATTAB / M. LARBI / Mme. BOUSSADIA',icon:'fa-sliders',color:'from-sky-500 to-blue-600'},
+  {id:'schema',code:'SCH',nameAr:'المخططات والأجهزة الكهربائية',nameFr:'Schémas et Appareillage',teacher:'M. LARBI',icon:'fa-diagram-project',color:'from-cyan-500 to-blue-700'},
+  {id:'cm',code:'CM',nameAr:'الإنشاء الميكانيكي',nameFr:'Construction mécanique',teacher:'M. S. (S.5305)',icon:'fa-gears',color:'from-fuchsia-500 to-pink-600'},
+  {id:'me',code:'ME',nameAr:'الآلات الكهربائية',nameFr:'Machines électriques',teacher:'M. KHEL OUI / M. BENNOUZA',icon:'fa-plug-circle-bolt',color:'from-blue-600 to-indigo-700'},
+  {id:'ep',code:'EP',nameAr:'إلكترونيات القدرة',nameFr:'Électronique de puissance',teacher:'Mme. TAIBI',icon:'fa-microchip',color:'from-violet-600 to-purple-800'},
+  {id:'edp',code:'EDP',nameAr:'المعادلات التفاضلية الجزئية',nameFr:'Équations aux dérivées partielles',teacher:'Mme. TAIBI',icon:'fa-calculator',color:'from-slate-600 to-slate-800'}
+];
+
+/* ============================================================
+   الملفات  —  لإضافة ملف جديد: انسخ سطراً وضعه في أعلى القائمة
+   moduleId: pee | se | tt | mat | sa | schema | cm | me | ep | edp
+   category: cours | td | tp
+   ============================================================ */
+const FILES = [
+  {moduleId:'sa',category:'tp',title:'TP 01 SA',url:'https://drive.google.com/file/d/1ycyEtLAVu2ZNFTqHt9rI7FPNWfLHM1AD/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'},
+  {moduleId:'sa',category:'tp',title:'TP 02 SA',url:'https://drive.google.com/file/d/1SVDssKnOQLdlicUkwgfXBepxQHOAR23A/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'},
+  {moduleId:'tt',category:'cours',title:'Cour 4',url:'https://drive.google.com/file/d/1xHqtwPB2fAFvc7IakSufrLCRyiklMtPy/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'},
+  {moduleId:'tt',category:'cours',title:'Cour 3',url:'https://drive.google.com/file/d/1PTJ6llKnfHkrbVSSICXU8UjUg4-4mZJY/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'},
+  {moduleId:'tt',category:'cours',title:'Cour 2',url:'https://drive.google.com/file/d/1q066kJpAMyVvauu_W5UQiOs3ubMHIVow/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'},
+  {moduleId:'tt',category:'cours',title:'Cour 1',url:'https://drive.google.com/file/d/1Bhdi-p1LBulhCbfNrWwk7SP9jezNINOg/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'},
+  {moduleId:'me',category:'tp',title:'TP 02 ME',url:'https://drive.google.com/file/d/10-JQEvCoub2UpMFnRJ1EsAyhFg3QyFz2/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'},
+  {moduleId:'me',category:'tp',title:'TP 01 ME',url:'https://drive.google.com/file/d/1O8BG_ZH74QhW7Ij1zkX7SrubQS1WcTCY/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'},
+  {moduleId:'tt',category:'td',title:'TD 02 TT',url:'https://drive.google.com/file/d/1r4M9svFVh98sgRD_i8c3Y20iTPPA_Qv3/view?usp=drivesdk',author:'A IMPRIMER',date:'2026-10-31'},
+  {moduleId:'tt',category:'td',title:'TD 01 TT',url:'https://drive.google.com/file/d/1H4rYThO4BiQL3qS8oor69yWPhxcoF3Y3/view?usp=drivesdk',author:'A IMPRIMER',date:'2026-10-31'},
+  {moduleId:'sa',category:'td',title:'TD 02 SA',url:'https://drive.google.com/file/d/1xieMjM7osDI6BsnBGnftzgORWsO-rnfM/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'},
+  {moduleId:'sa',category:'td',title:'TD 01 SA',url:'https://drive.google.com/file/d/1yUXZqOM21wvx3VccHLEVoFvM6oqCxeAg/view?usp=drivesdk',author:'الأستاذ',date:'2026-10-31'}
+];
+
+/* ============================================================ */
+const CATS = {
+  cours:{label:'الدروس (Cours)',icon:'fa-book-open',heading:'📘 قائمة دروس المادة (Cours)'},
+  td:{label:'الأعمال الموجهة (TD)',icon:'fa-pen-ruler',heading:'📝 قائمة التمارين والسلاسل (TD)'},
+  tp:{label:'الأعمال التطبيقية (TP)',icon:'fa-flask',heading:'🔬 قائمة الأشغال التطبيقية (TP)'}
+};
+const FILTERS = [['all','الكل'],['cours','📘 يحتوي على دروس'],['td','📝 يحتوي على TD'],['tp','🔬 يحتوي على TP']];
+
+let currentModuleId = null, currentCategory = 'cours', currentFilter = 'all', searchQuery = '';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function parseDriveLink(url) {
+  const m = (url || '').match(/\/d\/([a-zA-Z0-9_-]+)/) || (url || '').match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (m) return {download:`https://drive.google.com/uc?export=download&id=${m[1]}`, preview:`https://drive.google.com/file/d/${m[1]}/preview`};
+  return {download:url, preview:url};
+}
+
+function showHome() {
+  $('view-module-detail').classList.add('hidden');
+  $('view-modules').classList.remove('hidden');
+  renderModules();
+}
+
+function renderFilters() {
+  $('filters').innerHTML = FILTERS.map(([k,l]) =>
+    `<button type="button" data-f="${k}" class="px-3.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${k===currentFilter?'bg-sky-600 text-white shadow-sm':'text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}">${l}</button>`).join('');
+  $('filters').querySelectorAll('button').forEach(b => b.onclick = () => { currentFilter = b.dataset.f; renderFilters(); renderModules(); });
+}
+
+function renderModules() {
+  const q = searchQuery.toLowerCase();
+  const list = MODULES.filter(m => {
+    const ok = !q || [m.nameAr, m.nameFr, m.code, m.teacher].some(s => s.toLowerCase().includes(q));
+    if (!ok) return false;
+    return currentFilter === 'all' || FILES.some(f => f.moduleId === m.id && f.category === currentFilter);
+  });
+  $('modules-count-label').textContent = `عرض ${list.length} من أصل ${MODULES.length} مواد`;
+  const grid = $('modules-grid');
+  if (!list.length) {
+    grid.innerHTML = `<div class="col-span-full py-12 text-center"><i class="fa-solid fa-folder-open text-4xl text-slate-300 dark:text-slate-600"></i><p class="text-sm font-bold text-slate-500 mt-3">لا توجد مواد تطابق البحث</p></div>`;
+    return;
+  }
+  grid.innerHTML = '';
+  list.forEach(m => {
+    const n = c => FILES.filter(f => f.moduleId === m.id && f.category === c).length;
+    const box = (c, label, tone) => { const k = n(c); return `<div class="py-1 rounded-lg ${k>0?tone:'bg-slate-50 dark:bg-slate-900 text-slate-400'}"><span class="block font-extrabold text-xs leading-none">${k}</span><span class="text-[9px] leading-none">${label}</span></div>`; };
+    const card = document.createElement('div');
+    card.className = 'group aspect-square bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-3 sm:p-4 shadow-sm hover:shadow-xl hover:border-sky-300 dark:hover:border-sky-700 active:scale-95 transition-all cursor-pointer overflow-hidden';
+    card.onclick = () => openModule(m.id);
+    card.innerHTML = `
+      <div class="flex flex-col justify-between h-full">
+        <div class="flex items-start justify-between gap-2">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr ${m.color} text-white flex items-center justify-center text-lg sm:text-xl shadow-md group-hover:scale-105 transition-transform"><i class="fa-solid ${m.icon}"></i></div>
+          <span class="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-[10px] font-bold">${m.code}</span>
         </div>
-    </footer>
-
-    <!-- Javascript Application Logic -->
-    <script>
-        // Module definitions based on USTO-MB Electromechanics L3 S1 Schedule
-        const INITIAL_MODULES = [
-            {
-                id: 'pee',
-                code: 'PEE',
-                nameAr: 'إنتاج الطاقة الكهربائية',
-                nameFr: "Production d'énergie électrique",
-                teacher: 'M. AZZOUZ',
-                icon: 'fa-bolt',
-                color: 'from-amber-500 to-orange-600'
-            },
-            {
-                id: 'se',
-                code: 'SE',
-                nameAr: 'الأمن الكهربائي',
-                nameFr: 'Sécurité électrique',
-                teacher: 'M. MEKSI',
-                icon: 'fa-shield-heart',
-                color: 'from-emerald-500 to-teal-600'
-            },
-            {
-                id: 'tt',
-                code: 'TT',
-                nameAr: 'الانتقال الحراري',
-                nameFr: 'Transfert thermique',
-                teacher: 'M. SLIMANE',
-                icon: 'fa-temperature-high',
-                color: 'from-rose-500 to-red-600'
-            },
-            {
-                id: 'mat',
-                code: 'MAT',
-                nameAr: 'المواد الكهرتقنية',
-                nameFr: 'Matériaux électrotechniques',
-                teacher: 'Mme. SI ALI',
-                icon: 'fa-atom',
-                color: 'from-purple-500 to-indigo-600'
-            },
-            {
-                id: 'sa',
-                code: 'SA',
-                nameAr: 'الأنظمة الموجهة',
-                nameFr: 'Systèmes Asservis',
-                teacher: 'M. HATTAB / M. LARBI / Mme. BOUSSADIA',
-                icon: 'fa-sliders',
-                color: 'from-sky-500 to-blue-600'
-            },
-            {
-                id: 'schema',
-                code: 'SCH',
-                nameAr: 'المخططات والأجهزة الكهربائية',
-                nameFr: 'Schémas et Appareillage',
-                teacher: 'M. LARBI',
-                icon: 'fa-diagram-project',
-                color: 'from-cyan-500 to-blue-700'
-            },
-            {
-                id: 'cm',
-                code: 'CM',
-                nameAr: 'الإنشاء الميكانيكي',
-                nameFr: 'Construction mécanique',
-                teacher: 'M. S. (S.5305)',
-                icon: 'fa-gears',
-                color: 'from-fuchsia-500 to-pink-600'
-            },
-            {
-                id: 'me',
-                code: 'ME',
-                nameAr: 'الآلات الكهربائية',
-                nameFr: 'Machines électriques',
-                teacher: 'M. KHEL OUI / M. BENNOUZA',
-                icon: 'fa-plug-circle-bolt',
-                color: 'from-blue-600 to-indigo-700'
-            },
-            {
-                id: 'ep',
-                code: 'EP',
-                nameAr: 'إلكترونيات القدرة',
-                nameFr: 'Électronique de puissance',
-                teacher: 'Mme. TAIBI',
-                icon: 'fa-microchip',
-                color: 'from-violet-600 to-purple-800'
-            },
-            {
-                id: 'edp',
-                code: 'EDP',
-                nameAr: 'المعادلات التفاضلية الجزئية',
-                nameFr: 'Équations aux dérivées partielles',
-                teacher: 'Mme. TAIBI',
-                icon: 'fa-calculator',
-                color: 'from-slate-600 to-slate-800'
-            }
-        ];
-
-        // Sample initial files pre-populated
-        const INITIAL_FILES = [
-            {
-                id: 'f1',
-                moduleId: 'pee',
-                category: 'cours',
-                title: 'Chapitre 1: Introduction aux centrales de production électrique',
-                url: 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs/view?usp=sharing',
-                author: 'M. AZZOUZ',
-                date: '2026-10-15'
-            },
-            {
-                id: 'f2',
-                moduleId: 'pee',
-                category: 'td',
-                title: 'Série TD N°1: Calcul de puissance et rendement des centrales',
-                url: 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs/view?usp=sharing',
-                author: 'M. AZZOUZ',
-                date: '2026-10-20'
-            },
-            {
-                id: 'f3',
-                moduleId: 'sa',
-                category: 'cours',
-                title: 'Cours Systèmes Asservis: Modélisation et Fonctions de Transfert',
-                url: 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs/view?usp=sharing',
-                author: 'M. HATTAB',
-                date: '2026-10-12'
-            },
-            {
-                id: 'f4',
-                moduleId: 'sa',
-                category: 'tp',
-                title: 'TP N°1 SA: Identification des systèmes du 1er et 2ème ordre',
-                url: 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs/view?usp=sharing',
-                author: 'M. LARBI',
-                date: '2026-10-18'
-            },
-            {
-                id: 'f5',
-                moduleId: 'me',
-                category: 'cours',
-                title: 'Machines électriques: Transformateurs monophasés et triphasés',
-                url: 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs/view?usp=sharing',
-                author: 'M. KHEL OUI',
-                date: '2026-10-10'
-            },
-            {
-                id: 'f6',
-                moduleId: 'me',
-                category: 'tp',
-                title: 'TP N°1 Machines Électriques: Essais à vide et en court-circuit',
-                url: 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs/view?usp=sharing',
-                author: 'M. BENNOUZA',
-                date: '2026-10-22'
-            },
-            {
-                id: 'f7',
-                moduleId: 'ep',
-                category: 'cours',
-                title: 'Électronique de Puissance: Les Redresseurs non commandés et commandés',
-                url: 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs/view?usp=sharing',
-                author: 'Mme. TAIBI',
-                date: '2026-10-14'
-            },
-            {
-                id: 'f8',
-                moduleId: 'edp',
-                category: 'td',
-                title: 'Série de TD N°1: Résolution des équations différentielles',
-                url: 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs/view?usp=sharing',
-                author: 'Mme. TAIBI',
-                date: '2026-10-19'
-            }
-        ];
-
-        // State variables
-        let appFiles = [];
-        let currentModuleId = null;
-        let currentCategory = 'cours'; // 'cours' | 'td' | 'tp'
-        let clickLogoCount = 0;
-        let adminPin = '1234';
-        let pendingConfirmCallback = null;
-
-        // Helper: Google Drive Link Parser
-        function parseDriveLink(linkUrl) {
-            if (!linkUrl) return { downloadUrl: '#', previewUrl: 'about:blank' };
-            
-            // Extract Drive File ID if present
-            const driveIdMatch = linkUrl.match(/\/d\/([a-zA-Z0-9_-]+)/) || linkUrl.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-            if (driveIdMatch && driveIdMatch[1]) {
-                const fileId = driveIdMatch[1];
-                return {
-                    fileId: fileId,
-                    downloadUrl: `https://drive.google.com/uc?export=download&id=${fileId}`,
-                    previewUrl: `https://drive.google.com/file/d/${fileId}/preview`
-                };
-            }
-            
-            return {
-                fileId: null,
-                downloadUrl: linkUrl,
-                previewUrl: linkUrl
-            };
-        }
-
-        // Helper: Local Storage Management
-        function loadDatabase() {
-            try {
-                const storedFiles = localStorage.getItem('electromech_files_db');
-                if (storedFiles) {
-                    appFiles = JSON.parse(storedFiles);
-                } else {
-                    appFiles = [...INITIAL_FILES];
-                    saveDatabase();
-                }
-            } catch (e) {
-                console.error('Error loading localStorage', e);
-                appFiles = [...INITIAL_FILES];
-            }
-        }
-
-        function saveDatabase() {
-            try {
-                localStorage.setItem('electromech_files_db', JSON.stringify(appFiles));
-            } catch (e) {
-                console.error('Error saving to localStorage', e);
-            }
-        }
-
-        // Helper: Toast Notifications
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `p-3 rounded-xl text-xs font-bold shadow-lg flex items-center justify-between gap-3 transform transition-all duration-300 translate-y-4 opacity-0 pointer-events-auto ${
-                type === 'success' 
-                    ? 'bg-emerald-600 text-white' 
-                    : type === 'error'
-                    ? 'bg-rose-600 text-white'
-                    : 'bg-sky-600 text-white'
-            }`;
-            
-            toast.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-circle-info'} text-sm"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            
-            container.appendChild(toast);
-            
-            requestAnimationFrame(() => {
-                toast.classList.remove('translate-y-4', 'opacity-0');
-            });
-
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-4');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        // In-page Modal Confirm Replacement
-        function showConfirmModal(title, message, onConfirm) {
-            document.getElementById('confirm-modal-title').textContent = title;
-            document.getElementById('confirm-modal-msg').textContent = message;
-            pendingConfirmCallback = onConfirm;
-            document.getElementById('confirm-modal').classList.remove('hidden');
-        }
-
-        // DOM Elements
-        const viewModules = document.getElementById('view-modules');
-        const viewModuleDetail = document.getElementById('view-module-detail');
-        const viewAdmin = document.getElementById('view-admin');
-
-        // Render Modules Grid - French main title, Arabic translation below
-        function renderModules(filterType = 'all', searchQuery = '') {
-            const container = document.getElementById('modules-grid');
-            container.innerHTML = '';
-
-            let filteredModules = INITIAL_MODULES.filter(mod => {
-                // Search query match
-                const matchSearch = searchQuery === '' || 
-                    mod.nameAr.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    mod.nameFr.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    mod.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    mod.teacher.toLowerCase().includes(searchQuery.toLowerCase());
-                
-                if (!matchSearch) return false;
-
-                if (filterType === 'all') return true;
-
-                // Check if module has files of selected type
-                const hasFiles = appFiles.some(f => f.moduleId === mod.id && f.category === filterType);
-                return hasFiles;
-            });
-
-            document.getElementById('modules-count-label').textContent = `عرض ${filteredModules.length} من أصل ${INITIAL_MODULES.length} مواد`;
-
-            if (filteredModules.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full py-12 text-center space-y-3">
-                        <i class="fa-solid fa-folder-open text-4xl text-slate-300 dark:text-slate-600"></i>
-                        <p class="text-sm font-bold text-slate-500">لا توجد مواد تطابق خيارات البحث الحالية</p>
-                    </div>
-                `;
-                return;
-            }
-
-            filteredModules.forEach(mod => {
-                const modFiles = appFiles.filter(f => f.moduleId === mod.id);
-                const countCours = modFiles.filter(f => f.category === 'cours').length;
-                const countTD = modFiles.filter(f => f.category === 'td').length;
-                const countTP = modFiles.filter(f => f.category === 'tp').length;
-
-                const card = document.createElement('div');
-                card.className = "group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700/80 p-5 shadow-sm hover:shadow-xl hover:border-sky-300 dark:hover:border-sky-700 transition-all cursor-pointer flex flex-col justify-between";
-                card.onclick = () => openModuleDetail(mod.id);
-
-                card.innerHTML = `
-                    <div class="space-y-3">
-                        <div class="flex items-start justify-between gap-3">
-                            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr ${mod.color} text-white flex items-center justify-center text-xl shadow-md group-hover:scale-105 transition-transform">
-                                <i class="fa-solid ${mod.icon}"></i>
-                            </div>
-                            <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[11px] font-bold">
-                                ${mod.code}
-                            </span>
-                        </div>
-
-                        <div>
-                            <!-- Primary Title: French -->
-                            <h3 class="text-base font-extrabold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors leading-snug dir-ltr text-right">
-                                ${mod.nameFr}
-                            </h3>
-                            <!-- Subtitle below: Arabic translation -->
-                            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">
-                                ${mod.nameAr}
-                            </p>
-                        </div>
-
-                        <div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 pt-1">
-                            <i class="fa-solid fa-user-tie text-sky-500"></i>
-                            <span>${mod.teacher}</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-700/60 grid grid-cols-3 gap-2 text-center text-[11px]">
-                        <div class="p-1.5 rounded-lg ${countCours > 0 ? 'bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300' : 'bg-slate-50 dark:bg-slate-900 text-slate-400'}">
-                            <span class="block font-extrabold text-xs">${countCours}</span>
-                            <span class="text-[10px]">Cours</span>
-                        </div>
-                        <div class="p-1.5 rounded-lg ${countTD > 0 ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300' : 'bg-slate-50 dark:bg-slate-900 text-slate-400'}">
-                            <span class="block font-extrabold text-xs">${countTD}</span>
-                            <span class="text-[10px]">TD</span>
-                        </div>
-                        <div class="p-1.5 rounded-lg ${countTP > 0 ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300' : 'bg-slate-50 dark:bg-slate-900 text-slate-400'}">
-                            <span class="block font-extrabold text-xs">${countTP}</span>
-                            <span class="text-[10px]">TP</span>
-                        </div>
-                    </div>
-                `;
-
-                container.appendChild(card);
-            });
-        }
-
-        // Open Module Detail View - French main title, Arabic translation below
-        function openModuleDetail(moduleId, category = 'cours') {
-            currentModuleId = moduleId;
-            currentCategory = category;
-
-            const mod = INITIAL_MODULES.find(m => m.id === moduleId);
-            if (!mod) return;
-
-            // Hide other views
-            viewModules.classList.add('hidden');
-            viewAdmin.classList.add('hidden');
-            viewModuleDetail.classList.remove('hidden');
-
-            // Breadcrumb & Header
-            document.getElementById('detail-breadcrumb').textContent = `الرئيسية / ${mod.nameFr}`;
-            
-            const headerContainer = document.getElementById('module-detail-header');
-            headerContainer.innerHTML = `
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr ${mod.color} text-white flex items-center justify-center text-2xl shadow-lg">
-                            <i class="fa-solid ${mod.icon}"></i>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <span class="px-2 py-0.5 rounded-md bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200 text-xs font-bold">${mod.code}</span>
-                                <span class="text-xs text-slate-400">السداسي الأول S1</span>
-                            </div>
-                            <!-- Primary Title: French -->
-                            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1 dir-ltr text-right">${mod.nameFr}</h2>
-                            <!-- Subtitle: Arabic translation & Teacher -->
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">${mod.nameAr} | الأستاذ: ${mod.teacher}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Update Tab active states and counts
-            updateCategoryTabs();
-            renderCategoryFiles();
-        }
-
-        function updateCategoryTabs() {
-            const modFiles = appFiles.filter(f => f.moduleId === currentModuleId);
-            const countCours = modFiles.filter(f => f.category === 'cours').length;
-            const countTD = modFiles.filter(f => f.category === 'td').length;
-            const countTP = modFiles.filter(f => f.category === 'tp').length;
-
-            document.getElementById('badge-count-cours').textContent = countCours;
-            document.getElementById('badge-count-td').textContent = countTD;
-            document.getElementById('badge-count-tp').textContent = countTP;
-
-            ['cours', 'td', 'tp'].forEach(cat => {
-                const btn = document.getElementById(`tab-${cat}`);
-                if (cat === currentCategory) {
-                    btn.className = "tab-type-btn py-3 px-1 border-b-2 font-bold text-sm flex items-center gap-2 border-sky-600 text-sky-600 dark:text-sky-400";
-                } else {
-                    btn.className = "tab-type-btn py-3 px-1 border-b-2 font-bold text-sm flex items-center gap-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300";
-                }
-            });
-
-            const headingsMap = {
-                cours: '📘 قائمة دروس المادة (Cours)',
-                td: '📝 قائمة التمارين والسلاسل (TD)',
-                tp: '🔬 قائمة الأشغال التطبيقية (TP)'
-            };
-            document.getElementById('category-title-heading').innerHTML = `<span>${headingsMap[currentCategory]}</span>`;
-        }
-
-        function renderCategoryFiles(searchQuery = '') {
-            const container = document.getElementById('documents-list-container');
-            container.innerHTML = '';
-
-            const modFiles = appFiles.filter(f => 
-                f.moduleId === currentModuleId && 
-                f.category === currentCategory &&
-                (searchQuery === '' || f.title.toLowerCase().includes(searchQuery.toLowerCase()))
-            );
-
-            if (modFiles.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full py-12 text-center bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
-                        <i class="fa-solid fa-file-circle-xmark text-4xl text-slate-300 dark:text-slate-600"></i>
-                        <p class="text-sm font-bold text-slate-500">لا توجد ملفات مرفوعة حالياً في هذا القسم</p>
-                        <p class="text-xs text-slate-400">يقوم الأستاذ بإضافة الملفات أوتوماتيكياً عبر صفحة الإدارة المخفية</p>
-                    </div>
-                `;
-                return;
-            }
-
-            modFiles.forEach(file => {
-                const driveInfo = parseDriveLink(file.url);
-
-                const card = document.createElement('div');
-                card.className = "bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-3";
-
-                card.innerHTML = `
-                    <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold text-lg flex-shrink-0">
-                            <i class="fa-solid fa-file-pdf"></i>
-                        </div>
-                        <div class="space-y-1 overflow-hidden">
-                            <h4 class="text-sm font-bold text-slate-900 dark:text-white leading-snug">
-                                ${file.title}
-                            </h4>
-                            <div class="flex items-center gap-3 text-[11px] text-slate-400">
-                                <span><i class="fa-solid fa-user-pen ml-1"></i>${file.author || 'الأستاذ'}</span>
-                                <span><i class="fa-regular fa-calendar ml-1"></i>${file.date || 'جديد'}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-2 pt-2 border-t border-slate-100 dark:border-slate-700/60">
-                        <button onclick="previewFile('${file.title.replace(/'/g, "'")}', '${driveInfo.previewUrl}', '${driveInfo.downloadUrl}')"
-                            class="flex-1 py-1.5 px-3 rounded-xl bg-sky-50 dark:bg-sky-950/50 hover:bg-sky-100 text-sky-600 dark:text-sky-400 text-xs font-bold transition-colors flex items-center justify-center gap-1.5">
-                            <i class="fa-solid fa-eye"></i>
-                            <span>معاينة</span>
-                        </button>
-
-                        <a href="${driveInfo.downloadUrl}" target="_blank" download
-                            class="flex-1 py-1.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm">
-                            <i class="fa-solid fa-download"></i>
-                            <span>تحميل مباشر</span>
-                        </a>
-                    </div>
-                `;
-
-                container.appendChild(card);
-            });
-        }
-
-        // Preview File Modal Handler
-        function previewFile(title, previewUrl, downloadUrl) {
-            document.getElementById('pdf-modal-title').textContent = title;
-            document.getElementById('pdf-modal-download-btn').href = downloadUrl;
-            document.getElementById('pdf-frame').src = previewUrl;
-            document.getElementById('pdf-modal').classList.remove('hidden');
-        }
-
-        // Admin Secret Portal Handlers
-        function openAdminPortal() {
-            // Hide other views
-            viewModules.classList.add('hidden');
-            viewModuleDetail.classList.add('hidden');
-            viewAdmin.classList.remove('hidden');
-
-            populateAdminSelects();
-            renderAdminFilesTable();
-        }
-
-        function populateAdminSelects() {
-            const select = document.getElementById('form-module-select');
-            select.innerHTML = '<option value="" disabled selected>-- اختر المادة --</option>';
-
-            INITIAL_MODULES.forEach(mod => {
-                const opt = document.createElement('option');
-                opt.value = mod.id;
-                opt.textContent = `${mod.nameFr} (${mod.nameAr} - ${mod.code})`;
-                select.appendChild(opt);
-            });
-        }
-
-        function renderAdminFilesTable() {
-            const tbody = document.getElementById('admin-files-tbody');
-            tbody.innerHTML = '';
-
-            if (appFiles.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="6" class="py-8 text-center text-slate-400">لا توجد ملفات حالية في قاعدة البيانات.</td>
-                    </tr>
-                `;
-                return;
-            }
-
-            appFiles.forEach((file) => {
-                const mod = INITIAL_MODULES.find(m => m.id === file.moduleId) || { nameFr: file.moduleId, nameAr: '' };
-                const catLabels = { cours: '📘 Cours', td: '📝 TD', tp: '🔬 TP' };
-
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-700/40 transition-colors";
-
-                tr.innerHTML = `
-                    <td class="py-3 px-3 font-bold text-slate-800 dark:text-slate-200">${mod.nameFr} (${mod.nameAr})</td>
-                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-[11px]">${catLabels[file.category] || file.category}</span></td>
-                    <td class="py-3 px-3 max-w-xs truncate font-medium">${file.title}</td>
-                    <td class="py-3 px-3 max-w-xs truncate text-sky-500 font-mono text-[11px] dir-ltr">${file.url}</td>
-                    <td class="py-3 px-3 text-slate-400 text-[11px]">${file.date || '-'}</td>
-                    <td class="py-3 px-3 text-center">
-                        <button onclick="deleteFileFromAdmin('${file.id}')" class="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/50 transition-colors" title="حذف الملف">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </td>
-                `;
-
-                tbody.appendChild(tr);
-            });
-        }
-
-        function deleteFileFromAdmin(fileId) {
-            showConfirmModal('حذف الملف', 'هل أنت تأكد من رغبتك في حذف هذا الملف تلقائياً؟', () => {
-                appFiles = appFiles.filter(f => f.id !== fileId);
-                saveDatabase();
-                renderAdminFilesTable();
-                showToast('تم حذف الملف بنجاح', 'success');
-            });
-        }
-
-        // Initialize Event Listeners
-        window.addEventListener('DOMContentLoaded', () => {
-            loadDatabase();
-            renderModules('all', '');
-
-            // Confirm Modal Setup
-            document.getElementById('confirm-cancel-btn').addEventListener('click', () => {
-                document.getElementById('confirm-modal').classList.add('hidden');
-                pendingConfirmCallback = null;
-            });
-
-            document.getElementById('confirm-ok-btn').addEventListener('click', () => {
-                document.getElementById('confirm-modal').classList.add('hidden');
-                if (pendingConfirmCallback) {
-                    pendingConfirmCallback();
-                    pendingConfirmCallback = null;
-                }
-            });
-
-            // Theme Toggle
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            themeToggleBtn.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-            });
-
-            // Global Search Input
-            document.getElementById('global-search').addEventListener('input', (e) => {
-                renderModules('all', e.target.value);
-            });
-
-            document.getElementById('hero-search').addEventListener('input', (e) => {
-                renderModules('all', e.target.value);
-            });
-
-            // Module Detail Search Input
-            document.getElementById('doc-search-input').addEventListener('input', (e) => {
-                renderCategoryFiles(e.target.value);
-            });
-
-            // Filter Tabs on Home
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.filter-btn').forEach(b => {
-                        b.classList.remove('bg-sky-600', 'text-white', 'shadow-sm', 'active');
-                        b.classList.add('text-slate-600', 'dark:text-slate-400');
-                    });
-
-                    btn.classList.add('bg-sky-600', 'text-white', 'shadow-sm', 'active');
-                    btn.classList.remove('text-slate-600', 'dark:text-slate-400');
-
-                    const id = btn.id;
-                    const typeMap = {
-                        'filter-all': 'all',
-                        'filter-cours': 'cours',
-                        'filter-td': 'td',
-                        'filter-tp': 'tp'
-                    };
-                    renderModules(typeMap[id] || 'all');
-                });
-            });
-
-            // Nav Home Button
-            document.getElementById('nav-home-btn').addEventListener('click', () => {
-                viewModuleDetail.classList.add('hidden');
-                viewAdmin.classList.add('hidden');
-                viewModules.classList.remove('hidden');
-                renderModules('all', '');
-            });
-
-            document.getElementById('back-to-modules-btn').addEventListener('click', () => {
-                viewModuleDetail.classList.add('hidden');
-                viewAdmin.classList.add('hidden');
-                viewModules.classList.remove('hidden');
-            });
-
-            // Category Tabs in Module Detail
-            ['cours', 'td', 'tp'].forEach(cat => {
-                document.getElementById(`tab-${cat}`).addEventListener('click', () => {
-                    currentCategory = cat;
-                    updateCategoryTabs();
-                    renderCategoryFiles();
-                });
-            });
-
-            // Admin Trigger Events
-            const passwordModal = document.getElementById('password-modal');
-            const passwordForm = document.getElementById('password-form');
-            const adminPinInput = document.getElementById('admin-pin-input');
-            const passwordError = document.getElementById('password-error');
-
-            const triggerAdminCheck = () => {
-                passwordModal.classList.remove('hidden');
-                passwordError.classList.add('hidden');
-                adminPinInput.value = '';
-                adminPinInput.focus();
-            };
-
-            // STRICT ONLY SECRET ACCESS: Click logo 15 times!
-            document.getElementById('brand-logo').addEventListener('click', () => {
-                clickLogoCount++;
-                if (clickLogoCount >= 15) {
-                    clickLogoCount = 0;
-                    triggerAdminCheck();
-                }
-            });
-
-            document.getElementById('close-pass-modal-btn').addEventListener('click', () => {
-                passwordModal.classList.add('hidden');
-            });
-
-            passwordForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                if (adminPinInput.value === adminPin) {
-                    passwordModal.classList.add('hidden');
-                    openAdminPortal();
-                    showToast('مرحباً بك في لوحة الإدارة المخفية', 'success');
-                } else {
-                    passwordError.classList.remove('hidden');
-                }
-            });
-
-            // Exit Admin
-            document.getElementById('exit-admin-btn').addEventListener('click', () => {
-                viewAdmin.classList.add('hidden');
-                viewModules.classList.remove('hidden');
-            });
-
-            // Add File Form Submission
-            document.getElementById('add-file-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const moduleId = document.getElementById('form-module-select').value;
-                const category = document.getElementById('form-category-select').value;
-                const title = document.getElementById('form-title-input').value.trim();
-                const author = document.getElementById('form-author-input').value.trim() || 'الأستاذ';
-                const driveUrl = document.getElementById('form-drive-url-input').value.trim();
-
-                if (!moduleId || !category || !title || !driveUrl) {
-                    showToast('يرجى ملء جميع الحقول المطلوبة', 'error');
-                    return;
-                }
-
-                const newFile = {
-                    id: 'f_' + Date.now(),
-                    moduleId: moduleId,
-                    category: category,
-                    title: title,
-                    url: driveUrl,
-                    author: author,
-                    date: new Date().toISOString().split('T')[0]
-                };
-
-                appFiles.unshift(newFile);
-                saveDatabase();
-                renderAdminFilesTable();
-
-                document.getElementById('add-file-form').reset();
-                showToast('تمت إضافة الملف بنجاح وإدراجه في الواجهة تلقائياً!', 'success');
-            });
-
-            // Export & Reset DB
-            document.getElementById('export-db-btn').addEventListener('click', () => {
-                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appFiles, null, 2));
-                const dlAnchor = document.createElement('a');
-                dlAnchor.setAttribute("href", dataStr);
-                dlAnchor.setAttribute("download", "electromechanique_files_backup.json");
-                document.body.appendChild(dlAnchor);
-                dlAnchor.click();
-                dlAnchor.remove();
-                showToast('تم تصدير النسخة الاحتياطية بنجاح', 'success');
-            });
-
-            document.getElementById('reset-db-btn').addEventListener('click', () => {
-                showConfirmModal('إعادة ضبط البيانات', 'هل أنت تأكد من إعادة ضبط البيانات إلى الملفات الافتراضية؟', () => {
-                    appFiles = [...INITIAL_FILES];
-                    saveDatabase();
-                    renderAdminFilesTable();
-                    showToast('تمت استعادة البيانات الافتراضية', 'success');
-                });
-            });
-
-            // Close PDF Modal
-            document.getElementById('close-pdf-modal-btn').addEventListener('click', () => {
-                document.getElementById('pdf-modal').classList.add('hidden');
-                document.getElementById('pdf-frame').src = 'about:blank';
-            });
-        });
-    </script>
+        <div class="min-h-0">
+          <h3 class="text-[13px] sm:text-sm font-extrabold leading-snug line-clamp-3 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors" dir="ltr" style="text-align:right">${esc(m.nameFr)}</h3>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold mt-0.5 line-clamp-2">${esc(m.nameAr)}</p>
+        </div>
+        <div class="grid grid-cols-3 gap-1 text-center">
+          ${box('cours','Cours','bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300')}
+          ${box('td','TD','bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300')}
+          ${box('tp','TP','bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300')}
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function openModule(id) {
+  const m = MODULES.find(x => x.id === id); if (!m) return;
+  currentModuleId = id; currentCategory = 'cours'; $('doc-search').value = '';
+  $('view-modules').classList.add('hidden');
+  $('view-module-detail').classList.remove('hidden');
+  $('detail-breadcrumb').textContent = `الرئيسية / ${m.nameFr}`;
+  $('module-detail-header').innerHTML = `
+    <div class="flex items-center gap-4">
+      <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr ${m.color} text-white flex items-center justify-center text-2xl shadow-lg"><i class="fa-solid ${m.icon}"></i></div>
+      <div>
+        <div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded-md bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200 text-xs font-bold">${m.code}</span><span class="text-xs text-slate-400">السداسي الأول S1</span></div>
+        <h2 class="text-xl sm:text-2xl font-extrabold mt-1" dir="ltr" style="text-align:right">${esc(m.nameFr)}</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">${esc(m.nameAr)} | الأستاذ: ${esc(m.teacher)}</p>
+      </div>
+    </div>`;
+  renderTabs(); renderFiles();
+}
+
+function renderTabs() {
+  $('tabs').innerHTML = Object.entries(CATS).map(([k,c]) => {
+    const n = FILES.filter(f => f.moduleId === currentModuleId && f.category === k).length;
+    const on = k === currentCategory;
+    return `<button type="button" data-c="${k}" class="py-3 px-1 border-b-2 font-bold text-sm flex items-center gap-2 whitespace-nowrap ${on?'border-sky-600 text-sky-600 dark:text-sky-400':'border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}"><i class="fa-solid ${c.icon}"></i><span>${c.label}</span><span class="px-2 py-0.5 text-xs rounded-full ${on?'bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300':'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'}">${n}</span></button>`;
+  }).join('');
+  $('tabs').querySelectorAll('button').forEach(b => b.onclick = () => { currentCategory = b.dataset.c; renderTabs(); renderFiles(); });
+  $('category-title').textContent = CATS[currentCategory].heading;
+}
+
+function renderFiles() {
+  const q = $('doc-search').value.trim().toLowerCase();
+  const list = FILES.filter(f => f.moduleId === currentModuleId && f.category === currentCategory && (!q || f.title.toLowerCase().includes(q)));
+  const box = $('documents');
+  if (!list.length) {
+    box.innerHTML = `<div class="col-span-full py-12 text-center bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700"><i class="fa-solid fa-file-circle-xmark text-4xl text-slate-300 dark:text-slate-600"></i><p class="text-sm font-bold text-slate-500 mt-3">لا توجد ملفات في هذا القسم حالياً</p></div>`;
+    return;
+  }
+  box.innerHTML = '';
+  list.forEach(f => {
+    const d = parseDriveLink(f.url);
+    const card = document.createElement('div');
+    card.className = 'aspect-square bg-white dark:bg-slate-800 rounded-2xl p-3 sm:p-4 border border-slate-200 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-all overflow-hidden';
+    card.innerHTML = `
+      <div class="flex flex-col justify-between h-full">
+        <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center text-lg"><i class="fa-solid fa-file-pdf"></i></div>
+        <div class="min-h-0">
+          <h4 class="text-[13px] sm:text-sm font-bold leading-snug line-clamp-3" dir="auto">${esc(f.title)}</h4>
+          <div class="text-[10px] text-slate-400 mt-1 truncate"><i class="fa-regular fa-calendar ml-1"></i>${esc(f.date || '')}</div>
+          <div class="text-[10px] text-slate-400 truncate"><i class="fa-solid fa-user-pen ml-1"></i>${esc(f.author || 'الأستاذ')}</div>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button type="button" data-preview class="flex-1 py-1.5 rounded-lg bg-sky-50 dark:bg-sky-950/50 hover:bg-sky-100 text-sky-600 dark:text-sky-400 text-[11px] font-bold flex items-center justify-center gap-1"><i class="fa-solid fa-eye"></i><span>معاينة</span></button>
+          <a href="${esc(d.download)}" target="_blank" rel="noopener" title="تحميل" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold flex items-center justify-center"><i class="fa-solid fa-download"></i></a>
+        </div>
+      </div>`;
+    card.querySelector('[data-preview]').onclick = () => {
+      $('pdf-title').textContent = f.title;
+      $('pdf-download').href = d.download;
+      $('pdf-frame').src = d.preview;
+      $('pdf-modal').classList.remove('hidden'); $('pdf-modal').classList.add('flex');
+    };
+    box.appendChild(card);
+  });
+}
+
+function closePdf() {
+  $('pdf-modal').classList.add('hidden'); $('pdf-modal').classList.remove('flex');
+  $('pdf-frame').src = 'about:blank';
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  try { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); } catch (e) {}
+  $('theme-toggle').onclick = () => {
+    const dark = document.documentElement.classList.toggle('dark');
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+  };
+  $('hero-search').oninput = e => { searchQuery = e.target.value; renderModules(); };
+  $('doc-search').oninput = renderFiles;
+  $('nav-home-btn').onclick = showHome;
+  $('back-btn').onclick = showHome;
+  $('pdf-close').onclick = closePdf;
+  $('pdf-modal').onclick = e => { if (e.target === $('pdf-modal')) closePdf(); };
+  renderFilters(); renderModules();
+});
+</script>
 </body>
 </html>
